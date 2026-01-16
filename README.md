@@ -69,7 +69,7 @@ Exported files can be used in mapping or GIS software.
 
 ## License
 
-Copyright (C) 2025 Juraj Sabo
+Copyright (C) 2026 Juraj Sabo
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
 
 ---
