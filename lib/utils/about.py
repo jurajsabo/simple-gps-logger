@@ -1,5 +1,7 @@
 from kivy.metrics import sp
-from config import app_name, app_version, year, author, source_code_link
+from kivymd.icon_definitions import md_icons
+
+from config import app_name, app_version, year, author
 
 
 # About text
@@ -24,13 +26,14 @@ f'''
 
     [size={size2}][b]Copyright[/b][/size]
 
-    © {year} {author}.
+    [font=Icons]{md_icons["copyright"]}[/font] {year} {author}.
     All rights reserved.
     Licensed under GPL v3.0.
 
-    View source code:
-
-    [b][i]{source_code_link}[/i][/b]
+    [i][font=Icons]{md_icons["web"]}[/font] [ref=web][color=0066cc][u]Website[/u][/color][/ref][/i]
+    [i][font=Icons]{md_icons["shield"]}[/font] [ref=privacy][color=0066cc][u]Privacy Policy[/u][/color][/ref][/i]
+    [i][font=Icons]{md_icons["file-document"]}[/font] [ref=license][color=0066cc][u]License[/u][/color][/ref][/i]
+    [i][font=Icons]{md_icons["code-tags"]}[/font] [ref=code][color=0066cc][u]Source Code[/u][/color][/ref][/i]
 
     [i]Caution: The Enemy Is Listening.[/i]
 

@@ -4,7 +4,7 @@ from math  import sin, cos, radians, atan2, sqrt
 
 from lib.gpx.gpx_stat_parser import parse_gpx_trkseg
 
-from config import app_name, source_code_link
+from config import app_name, urls
 from lib.utils.paths    import working_path
 from lib.utils.units    import \
 (
@@ -29,7 +29,7 @@ class GPXRecorder:
             activity:    str = None,
             work_path:   str = working_path,
             units:       str = 'metric',
-            link:        str = source_code_link
+            link:        str = urls['web']
         ):
         self.__output_file = output_file
 

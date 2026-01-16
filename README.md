@@ -74,6 +74,12 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 
 ---
 
+## Installation (Production)
+
+[Play Store](https://play.google.com/store/apps/details?id=org.prod.simplegpslogger)
+
+---
+
 ## Build & Installation (Development)
 
 ```bash
@@ -81,5 +87,3 @@ git clone https://github.com/jurajsabo/simple-gps-logger
 cd simple-gps-logger
 buildozer -v android debug
 ```
-
-

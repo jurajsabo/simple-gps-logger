@@ -140,21 +140,31 @@ class MockNavigationBar(CustomLabel):
 
     def get_navigation_bar_height(self):
         try:
-            decor_view = activity.getWindow().getDecorView()
-            insets     = decor_view.getRootWindowInsets()
-            density    = activity.getResources().getDisplayMetrics().density
-
             SDK_INT = int(BuildVersion.SDK_INT)
 
-            if SDK_INT >= 30:
-                WindowInsetsType = autoclass('android.view.WindowInsets$Type')
-                px = insets.getInsets(WindowInsetsType.navigationBars()).bottom
-            else:
-                px = insets.getSystemWindowInsetBottom()
+            # Only need manual offset handling for API 35+
+            if SDK_INT >= 35:
+                try:
+                    decor_view = activity.getWindow().getDecorView()
+                    insets     = decor_view.getRootWindowInsets()
 
-            height = dp(px / density)
-            print('[NAV BAR]', f'height: {height} dp')
-            return height
+                    if insets is None:
+                        return 0
+
+                    density          = activity.getResources().getDisplayMetrics().density
+                    WindowInsetsType = autoclass('android.view.WindowInsets$Type')
+                    px               = insets.getInsets(WindowInsetsType.navigationBars()).bottom
+
+                    height = dp(px / density)
+                    print('[NAV BAR]', f'height: {height} dp')
+                    return height
+
+                except Exception as e:
+                    print(f'[NAV BAR] Error: {e}')
+                    return 0
+            else:
+                # API < 35: system handles it automatically
+                return 0
 
         except Exception as e:
             print('[NAV BAR]', e)

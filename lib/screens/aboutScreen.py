@@ -6,6 +6,11 @@ from lib.utils.about  import about_text
 from lib.utils.banner import BannerAd
 from lib.utils.label  import CustomLabel, MockBanner
 
+from config import urls
+
+import webbrowser
+import re
+
 
 class AboutScreen(MDScreen, BannerAd):
     def __init__(self, **kwargs):
@@ -30,12 +35,13 @@ class AboutScreen(MDScreen, BannerAd):
             (
                 CustomLabel \
                 (
-                    text        = about_text,
-                    markup      = True,  # enable BBCode-style formatting
-                    halign      = "left",
-                    valign      = "top",
-                    padding     = [20, 20],
-                    size_hint_y = None
+                    text         = about_text,
+                    markup       = True,  # enable BBCode-style formatting
+                    halign       = "left",
+                    valign       = "top",
+                    padding      = [20, 20],
+                    size_hint_y  = None,
+                    on_ref_press = self.on_links_press
                 )
 
             )
@@ -55,6 +61,19 @@ class AboutScreen(MDScreen, BannerAd):
             label = scroll_view.children[0]
             # Bind the label's texture_size to its height, so it sizes properly
             label.bind(texture_size = label.setter('size'))
+
+    def on_links_press(self, instance, ref):
+        """
+            Handle multiple links with different refs and color changes
+        """
+
+        if ref in urls:
+            # Use regex to change only the color of the clicked link
+            pattern = rf'(\[ref={ref}\]\[color=)([0-9a-fA-F]{{6}})(\]\[u\])'
+            instance.text = re.sub(pattern, r'\g<1>800080\g<3>', instance.text)
+
+            # Open the URL
+            webbrowser.open(urls[ref])
 
     def on_size(self, *args):
         self.mock_banner.update_banner_height()

@@ -1,11 +1,18 @@
 
 author = 'Juraj Sabo'
-year   = '2025'
+year   = '2026'
 
 app_name    = 'Simple GPS Logger'
-app_version = '1.0.0'
+app_version = '1.0.2'
 
-source_code_link = f"https://github.com/{author.replace(' ', '').lower()}/{app_name.replace(' ', '-').lower()}"
+urls = \
+{
+    'web':     f'https://{author.lower().replace(" ", "")}.github.io/{app_name.lower().replace(" ", "-")}',
+    'privacy': f'https://{author.lower().replace(" ", "")}.github.io/{app_name.lower().replace(" ", "-")}/privacy-policy.html',
+	'license': f'https://{author.lower().replace(" ", "")}.github.io/{app_name.lower().replace(" ", "-")}/LICENSE',
+	'code':    f'https://github.com/{author.lower().replace(" ", "")}/{app_name.lower().replace(" ", "-")}'
+}
+
 
 ADMOB_BANNER_ID_default = 'ca-app-pub-3940256099942544/6300978111'
 
