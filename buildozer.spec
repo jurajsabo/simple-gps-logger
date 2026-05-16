@@ -38,7 +38,7 @@ version.filename = %(source.dir)s/config.py
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
 requirements =
-    python3==3.11.5,
+    python3==3.12.10,
     kivy==2.3.1,
     kivymd==1.2.0,
     androidstorage4kivy==0.1.1,
