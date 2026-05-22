@@ -3,7 +3,7 @@ author = 'Juraj Sabo'
 year   = '2026'
 
 app_name    = 'Simple GPS Logger'
-app_version = '1.0.2'
+app_version = '1.0.3'
 
 urls = \
 {

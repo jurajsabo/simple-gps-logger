@@ -38,6 +38,8 @@ Thumbs.db
 # Logs
 *.log
 *.json
+*.gpx
+*.csv
 
 # Virtual environments
 venv/

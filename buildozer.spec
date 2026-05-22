@@ -26,7 +26,7 @@ source.include_exts = py, png, jpg, kv, atlas, txt
 
 # (list) List of exclusions using pattern matching
 # Do not prefix with './'
-#source.exclude_patterns = license,images/*/*.jpg
+source.exclude_patterns = requirements.txt, p4a_hook.py
 
 # (str) Application versioning (method 1)
 #version = 0.1
@@ -38,11 +38,12 @@ version.filename = %(source.dir)s/config.py
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
 requirements =
-    python3==3.12.10,
+    python3==3.14.0,
+    hostpython3==3.14.0,
     kivy==2.3.1,
     kivymd==1.2.0,
     androidstorage4kivy==0.1.1,
-    pyjnius==1.6.1,
+    pyjnius==1.7.0,
     android==2024.1.21,
     filetype==1.2.0
 
@@ -115,15 +116,17 @@ android.permissions =
 
 # (int) Target Android API, should be as high as possible.
 android.api = 36
+android.extra_cflags = -Dban_ALooper_pollAll=ALooper_pollOnce -Wno-error -Wno-cast-function-type-strict -Wno-cast-function-type -fpermissive -Wno-implicit-function-declaration -Wno-error=implicit-function-declaration
+android.extra_ldflags = -Wl,-z,max-page-size=16384
 
 # (int) Minimum API your APK / AAB will support.
 android.minapi = 24
 
 # (int) Android SDK version to use
-#android.sdk = 34
+#android.sdk = 35
 
 # (str) Android NDK version to use
-android.ndk = 25b
+android.ndk = 28b
 
 # (int) Android NDK API to use. This is the minimum API your app will support, it should usually match android.minapi.
 android.ndk_api = 24
@@ -323,14 +326,14 @@ android.allow_backup = True
 android.release_artifact = aab
 
 # (str) The format used to package the app for debug mode (apk or aar).
-# android.debug_artifact = apk
+android.debug_artifact = apk
 
 #
 # Python for android (p4a) specific
 #
 
 # (str) python-for-android URL to use for checkout
-#p4a.url =
+p4a.url = https://github.com/kivy/python-for-android.git
 
 # (str) python-for-android fork to use in case if p4a.url is not specified, defaults to upstream (kivy)
 #p4a.fork = kivy
@@ -345,7 +348,7 @@ p4a.branch = master
 #p4a.source_dir =
 
 # (str) The directory in which python-for-android should look for your own build recipes (if any)
-#p4a.local_recipes =
+#p4a.local_recipes = ./p4a-recipes
 
 # (str) Filename to the hook for p4a
 p4a.hook = p4a_hook.py
@@ -364,7 +367,7 @@ p4a.hook = p4a_hook.py
 #p4a.setup_py = false
 
 # (str) extra command line arguments to pass when invoking pythonforandroid.toolchain
-#p4a.extra_args =
+#p4a.extra_args = --force-build
 
 
 

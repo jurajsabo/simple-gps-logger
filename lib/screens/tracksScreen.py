@@ -1,7 +1,7 @@
 import os
 
 from kivy       import platform
-from config     import points_limit, toast_duration
+from config     import app_name, points_limit, toast_duration
 from kivy.clock import Clock
 
 from kivymd.material_resources import dp
@@ -281,10 +281,12 @@ class TracksScreen(MDScreen, Saver):
                 if 23 <= SDK_INT <= 29 and not check_permission(Permission.WRITE_EXTERNAL_STORAGE):
                     track_storage = None
                 else:
-                    track_storage = self.ss.copy_to_shared(track_path, collection = self.Environment.DIRECTORY_DOWNLOADS) # copy to shared dir downloads
+                    track_storage = self.ss.copy_to_shared(track_path, collection = self.Environment.DIRECTORY_DOWNLOADS, filepath = track) # copy to shared dir download/<app_name>/<track>
+                    track_display = f'{self.Environment.DIRECTORY_DOWNLOADS}/{app_name}/{track}'
 
             else:
                 track_storage = os.path.join(working_path, track)
+                track_display = track_storage
                 with open(track_path, 'r', encoding = 'utf-8') as src, open(track_storage, 'w', encoding = 'utf-8') as dst:
                     source = src.read() # read the whole file at once
                     dst.write(source)
@@ -292,11 +294,8 @@ class TracksScreen(MDScreen, Saver):
 
             print('[TRACK]', f'Track copied: {track} -> {track_storage}')
             if track_storage is not None:
-                if track_storage.lower().endswith(track.lower()):
-                    toast('downloaded to')
-                    Clock.schedule_once(lambda dt: toast(f'{track_storage}'), toast_duration)
-                else:
-                    toast(f'{track} downloaded...')
+                toast(f'{track} downloaded to')
+                Clock.schedule_once(lambda dt: toast(f'{track_display}'), toast_duration)
 
             else:
                 toast('external storage access DENIED')
